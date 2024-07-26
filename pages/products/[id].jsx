@@ -12,6 +12,8 @@ export default function ProductDetailPage({ message, productInfo }) {
 	);
 }
 
+// server side rendering
+// Next.js 에서 제공하는 데이터 호출 메소드
 export async function getServerSideProps(context) {
 	const id = context.params.id;
 	const response = await axios.get(`http://localhost:4000/products/${id}`);
