@@ -1,11 +1,26 @@
 // '/cart' 에 해당하는 페이지 컴포넌트
 
-function CartPage() {
+import { fetchCarts } from '@/api';
+import CartHeader from '@/components/cart/CartHeader';
+import CartList from '@/components/cart/CartList';
+
+function CartPage({ carts }) {
 	return (
 		<>
-			<div>카트 페이지</div>
+			<CartHeader />
+			<CartList carts={carts} />
 		</>
 	);
+}
+
+export async function getServerSideProps() {
+	const { data } = await fetchCarts();
+
+	return {
+		props: {
+			carts: data,
+		},
+	};
 }
 
 export default CartPage;
